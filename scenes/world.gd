@@ -4,9 +4,11 @@ var block_scn = preload("res://scenes/world/block.tscn")
 
 @onready var blocks = $blocks
 
-var h_cells := 25
-var world_height := 1
-var v_cells := 25
+var h_cells := 5
+var world_height := 2
+var v_cells := 5
+
+var array_blocks : Array[Vector3i]
 
 func _ready():
 	randomize()
@@ -14,13 +16,13 @@ func _ready():
 		for h in h_cells:
 			for v in v_cells:
 				create_block(Vector3i(h, y, v), "dirt")
-				create_block(Vector3i(h, y, v), "dirt")
 				create_block(Vector3i(-h, y, -v), "dirt")
-				create_block(Vector3i(h, y, -v), "dirt")
-				create_block(Vector3i(-h, y, v), "dirt")
 	generate_structure(house)
 
-func create_block(pos, texture: String):
+func create_block(pos : Vector3i, texture: String):
+	if pos in array_blocks:
+		return
+	array_blocks.append(pos)
 	var block = block_scn.instantiate()
 	blocks.add_child(block)
 	block.init(texture)

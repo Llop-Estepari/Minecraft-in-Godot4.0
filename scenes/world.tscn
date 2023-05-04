@@ -28,6 +28,6 @@ sky_mode = 1
 environment = SubResource("Environment_6pfd0")
 
 [node name="Player" parent="." instance=ExtResource("1_aylw6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 
 [node name="blocks" type="Node3D" parent="."]
