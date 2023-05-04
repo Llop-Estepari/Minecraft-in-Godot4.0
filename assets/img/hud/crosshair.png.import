@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5pxhloslt81f"
-path.s3tc="res://.godot/imported/grass_block_untitled.png-7cfeed6dc6260f0b5992c089372bdb82.s3tc.ctex"
+uid="uid://cirt7vnfn3fd7"
+path.s3tc="res://.godot/imported/crosshair.png-c400061f1c26b3364d4b0aff999d2e31.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/3d_models/enviroment/grass_block_untitled.png"
-dest_files=["res://.godot/imported/grass_block_untitled.png-7cfeed6dc6260f0b5992c089372bdb82.s3tc.ctex"]
+source_file="res://assets/img/hud/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-c400061f1c26b3364d4b0aff999d2e31.s3tc.ctex"]
 
 [params]
 

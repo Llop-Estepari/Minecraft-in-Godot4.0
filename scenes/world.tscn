@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://crv2kuaj4wfdp"]
+[gd_scene load_steps=6 format=3 uid="uid://crv2kuaj4wfdp"]
 
 [ext_resource type="PackedScene" uid="uid://bo4tsovfpcplu" path="res://scenes/player.tscn" id="1_aylw6"]
-[ext_resource type="ArrayMesh" uid="uid://cfhewhsf2mqbl" path="res://assets/3d_models/enviroment/grass_block.res" id="2_xwvp4"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_fa1gj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q86g1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -12,35 +12,22 @@ sky_material = SubResource("ProceduralSkyMaterial_q86g1")
 
 [sub_resource type="Environment" id="Environment_6pfd0"]
 background_mode = 2
+background_color = Color(0.501961, 0.501961, 0.501961, 1)
 sky = SubResource("Sky_wtukf")
 tonemap_mode = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xrhwj"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="MeshLibrary" id="MeshLibrary_wuw01"]
-item/0/name = "grass"
-item/0/mesh = ExtResource("2_xwvp4")
-item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/shapes = [SubResource("BoxShape3D_xrhwj"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/navigation_layers = 1
-
 [node name="world" type="Node3D"]
+script = ExtResource("1_fa1gj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(0.892019, -0.160047, -0.422713, 0.442355, 0.50125, 0.743687, 0.0928606, -0.850372, 0.517923, 0, 0, 0)
 shadow_enabled = true
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6pfd0")
 
 [node name="Player" parent="." instance=ExtResource("1_aylw6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="GridMap" type="GridMap" parent="."]
-mesh_library = SubResource("MeshLibrary_wuw01")
-data = {
-"cells": PackedInt32Array(0, 0, 0, 1, 0, 0, 1, 65535, 0, 0, 65535, 0, 0, 65534, 0, 1, 65534, 0, 65535, 65534, 0, 65535, 65535, 0, 65535, 0, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 0, 2, 65533, 0, 1, 65533, 0, 0, 65533, 0, 65535, 65533, 0, 65534, 65533, 0, 65534, 65534, 0, 65533, 65534, 0, 65533, 65535, 0, 65534, 65535, 0, 65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65535, 2, 0, 65535, 3, 0, 0, 3, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 1, 0, 3, 0, 0, 3, 65535, 0, 3, 65534, 0, 3, 65533, 0, 3, 65532, 0, 2, 65532, 0, 1, 65532, 0, 0, 65532, 0, 65535, 65532, 0, 65534, 65532, 0, 65533, 65532, 0, 65532, 65532, 0, 65532, 65533, 0, 65533, 65533, 0, 65539, 65535, 0, 65539, 0, 0, 65539, 1, 0, 65538, 0, 0, 65538, 1, 0, 65538, 2, 0, 131075, 1, 0, 131076, 1, 0, 131076, 0, 0, 131076, 65535, 0, -5, 65532, 0, -5, 65533, 0, -5, 65534, 0, -5, 65535, 0, -4, 65535, 0, -4, 0, 0, -4, 1, 0, -3, 1, 0, -3, 2, 0, -3, 3, 0, -3, 0, 0, -4, 65534, 0, -5, 0, 0, -5, 1, 0, -5, 2, 0, -4, 3, 0, -4, 4, 0, -4, 2, 0, -65534, 65531, 0, -65535, 65531, 0, -65536, 65531, 0, -1, 65531, 0, -2, 65531, 0, -3, 65531, 0, -4, 65531, 0, -5, 65531, 0, -5, 65530, 0, -4, 65530, 0, -3, 65530, 0, -2, 65530, 0, -1, 65530, 0, -65536, 65530, 0, -65535, 65530, 0, -65534, 65530, 0, -65534, 65529, 0, -65535, 65529, 0, -65536, 65529, 0, -1, 65529, 0, -2, 65529, 0, -3, 65529, 0, -4, 65529, 0, -5, 65529, 0, 1, 65531, 0, 65537, 65531, 0, 65534, 3, 0, 65534, 4, 0, 65535, 4, 0, 0, 4, 0, 1, 4, 0, 1, 3, 0, 2, 3, 0, -3, 4, 0, -3, 5, 0, -2, 5, 0, -1, 5, 0, -65536, 5, 0, -65535, 5, 0, -65534, 5, 0, -65534, 4, 0, -65533, 4, 0, -65533, 3, 0, -65532, 3, 0, -65540, 5, 0, -65540, 6, 0, -65539, 6, 0, -65538, 6, 0, -65537, 6, 0, -131072, 6, 0, -131071, 6, 0, -131070, 6, 0, -131069, 6, 0, -131068, 6, 0, -131068, 5, 0, -131069, 5, 0, -65541, 3, 0, -65541, 4, 0, -65542, 4, 0, -65542, 3, 0, -65542, 2, 0, -65542, 1, 0, -65543, 1, 0, 196612, 65535, 0, 196612, 0, 0, 196612, 1, 0, 262148, 65535, 0)
-}
-metadata/_editor_floor_ = Vector3(0, 4, 0)
+[node name="blocks" type="Node3D" parent="."]

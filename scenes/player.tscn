@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo4tsovfpcplu"]
+[gd_scene load_steps=12 format=3 uid="uid://bo4tsovfpcplu"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_w8351"]
 [ext_resource type="Texture2D" uid="uid://xwpvym5knfpb" path="res://assets/3d_models/character/player_arm_steve_arm.png" id="2_t6lt0"]
+[ext_resource type="Texture2D" uid="uid://cirt7vnfn3fd7" path="res://assets/img/hud/crosshair.png" id="3_ogax1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmfmv"]
 resource_name = "skin"
@@ -40,18 +41,79 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dgadm")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sgja1"]
-size = Vector3(0.758924, 3.66684, 0.826977)
+[sub_resource type="Animation" id="Animation_alftd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_arm/arms:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.226454, 2.13123, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_8mi61"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_arm/arms:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.226454, 2.13123, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_3xvo1"]
+resource_name = "walk_movement"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player_arm/arms:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.226454, 2.13123, 0.6), Vector3(-0.393278, 1.90881, 0.6), Vector3(-0.226454, 2.13123, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtg3a"]
+_data = {
+"RESET": SubResource("Animation_alftd"),
+"idle": SubResource("Animation_8mi61"),
+"walk_movement": SubResource("Animation_3xvo1")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eklkq"]
+height = 1.9
+radius = 0.4
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_w8351")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75154, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 current = true
+
+[node name="range_raycast" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -5)
+collide_with_areas = true
+debug_shape_custom_color = Color(1, 0.211765, 0.894118, 1)
 
 [node name="player_arm" type="Node3D" parent="Head"]
 transform = Transform3D(-0.2, 0, -3.01992e-08, 0, 0.2, 0, 3.01992e-08, 0, -0.2, 0.118294, -0.66, -0.142763)
@@ -62,6 +124,28 @@ cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
 
+[node name="Arm_AnimationPlayer" type="AnimationPlayer" parent="Head"]
+libraries = {
+"": SubResource("AnimationLibrary_vtg3a")
+}
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.832, 0)
-shape = SubResource("BoxShape3D_sgja1")
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.95, 0)
+shape = SubResource("CylinderShape3D_eklkq")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="crosshair" type="TextureRect" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ogax1")
+expand_mode = 4

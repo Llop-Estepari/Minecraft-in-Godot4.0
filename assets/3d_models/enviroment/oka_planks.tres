@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://g8p5ady7pu5m"]
+
+[ext_resource type="Texture2D" uid="uid://b58bgs2kl1dbb" path="res://assets/3d_models/enviroment/block_oak_planks.png" id="1_rn0ry"]
+
+[resource]
+resource_name = "texture"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_rn0ry")
+texture_filter = 2
