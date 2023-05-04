@@ -14,7 +14,7 @@ var material = null
 
 @export var item_to_drop : PackedScene
 @export var amount_to_drop : int = 1
-@export var max_destroy : int = 100.0
+@export var max_destroy : float = 100.0
 
 var destroy = 0.0: set = _set_destroy
 
@@ -26,7 +26,7 @@ func _set_destroy(value):
 		destroy_block()
 
 func init(texture):
-	if texture == "cobblestone":max_destroy = 200.0
+	if texture == "cobblestone": max_destroy = 200.0
 	material = load(materials_path + list_materials_in_directory(texture))
 	cube.set_surface_override_material(0, material)
 

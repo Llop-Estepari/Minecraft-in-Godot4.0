@@ -11,6 +11,6 @@ func init(material, amnt, pos):
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y -= 8.0 * delta
+		velocity.y -= 15.0 * delta
 	velocity.y = clamp(velocity.y, -30.0, 30.0)
 	move_and_slide()

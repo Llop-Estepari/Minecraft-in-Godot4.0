@@ -13,7 +13,7 @@ config_version=5
 config/name="Minecraft"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://icon.png"
+config/icon="res://minecraft_logo.png"
 
 [display]
 
