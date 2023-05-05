@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://fbpu60w4sq0e" path="res://assets/3d_models/enviroment/block_mesh.res" id="2_knt3e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5sh0p"]
-margin = 0.0
+custom_solver_bias = 1.0
 
 [node name="block" type="StaticBody3D"]
 script = ExtResource("1_xdnyy")

@@ -3,7 +3,7 @@ extends StaticBody3D
 
 @onready var info = $info
 
-#birch_log, cobblestone, oka_planks, dirt
+#birch_log, cobblestone, oka_planks, dirt, birch_leaves
 var outline_material = preload("res://scenes/world/selected_block.tres")
 var item_drop_scn = preload("res://scenes/world/item_drop.tscn")
 

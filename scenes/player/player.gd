@@ -1,12 +1,17 @@
 extends CharacterBody3D
 
+signal item_selected(slot_pos)
+
+@onready var arm_animation_player : AnimationPlayer = $Head/Arm_AnimationPlayer
+
+@onready var jump_cd : Timer = $Timers/jump_cd
+@onready var destroy_cd : Timer = $Timers/destroy_cd
+
 @onready var head = $Head
-@onready var arm_animation_player = $Head/Arm_AnimationPlayer
 @onready var range_raycast : RayCast3D = $Head/Camera3D/range_raycast
-@onready var jump_cd = $Timers/jump_cd
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-const SPEED = 4.0
+const SPEED = 3.0
 const RUN_SPEED = 7.0
 const JUMP_VELOCITY = 10.0
 
@@ -14,21 +19,37 @@ var cur_speed = SPEED
 var direction
 var can_jump := true
 
+var can_destroy := true
+
 var mouse_sens = 0.1
 
 var cur_block
 #Left mouse pressed
-var destroying := false
 var jump_action := false
+var destroy_action := false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
+	input_camera_movement(event)
+	inventory_controller()
+	input_actions()
+
+func input_camera_movement(event):
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= mouse_sens * event.relative.x
 		head.rotation_degrees.x -= mouse_sens * event.relative.y
 		head.rotation_degrees.x = clamp(head.rotation_degrees.x, -90, 90)
+
+func input_actions():
+	destroy_action = Input.is_action_pressed("action_destroy")
+	jump_action = Input.is_action_pressed("action_jump")
+	
+	if Input.is_action_just_pressed("action_esc"): get_tree().quit()
+	if destroy_action and can_destroy:
+		can_destroy = false
+		destroy_cd.start()
 	
 	if Input.is_action_pressed("action_sprint") and Input.get_axis("forward", "backward") != 0:
 		arm_animation_player.speed_scale = 1.5
@@ -36,29 +57,37 @@ func _input(event):
 	else:
 		cur_speed = SPEED
 		arm_animation_player.speed_scale = 1.0
-	
-	destroying = Input.is_action_pressed("destroy_action")
-	jump_action = Input.is_action_pressed("action_jump")
+		
+
+func inventory_controller():
+	if Input.is_key_pressed(KEY_1): emit_signal("item_selected", 0)
+	elif Input.is_key_pressed(KEY_2): emit_signal("item_selected", 1)
+	elif Input.is_key_pressed(KEY_3): emit_signal("item_selected", 2)
+	elif Input.is_key_pressed(KEY_4): emit_signal("item_selected", 3)
+	elif Input.is_key_pressed(KEY_5): emit_signal("item_selected", 4)
+	elif Input.is_key_pressed(KEY_6): emit_signal("item_selected", 5)
+	elif Input.is_key_pressed(KEY_7): emit_signal("item_selected", 6)
+	elif Input.is_key_pressed(KEY_8): emit_signal("item_selected", 7)
+	elif Input.is_key_pressed(KEY_9): emit_signal("item_selected", 8)
+	if Input.is_action_just_pressed("action_slot_up"): emit_signal("item_selected", -1)
+	elif Input.is_action_just_pressed("action_slot_down"): emit_signal("item_selected", -2)
 
 func _physics_process(delta):
 	#DEBUG
 	$HUD/Label.text = str(range_raycast.get_collider()) + str("\n", is_on_floor())
-	if Input.is_action_just_pressed("action_esc"): get_tree().quit()
 	#
-	
 	block_controller()
-	
 	movement(delta)
 	animation_controller()
 
 func animation_controller():
-	if destroying:
-		arm_animation_player.play("interact")
+	if destroy_action:
+		arm_animation_player.play("destroy")
 	elif direction and is_on_floor():
 		arm_animation_player.play("walk_movement")
 	else:
 		arm_animation_player.play("idle")
-	
+
 func movement(delta):
 	if not is_on_floor(): velocity.y -= gravity * delta
 	
@@ -88,13 +117,18 @@ func block_controller():
 		if cur_block != null: cur_block.unhover()
 		cur_block = range_raycast.get_collider()
 		cur_block.hover()
-		if destroying:
-			cur_block._set_destroy(5)
 	else:
 		if cur_block != null:
 			cur_block.unhover()
 			cur_block.reset_destroy()
+			cur_block = null
 
+func try_destroy():
+	if cur_block != null:
+		cur_block._set_destroy(25)
 
 func _on_jump_cd_timeout():
 	can_jump = true
+
+func _on_destroy_cd_timeout():
+	can_destroy = true

@@ -1,0 +1,21 @@
+					_______________________MINECRAFT___________________________
+
+TODO:
+	Create physic inventory in player_arm node.
+	Collect items and add to the inventory.
+	Pull up and down items animation.
+	Create 2nd camera to prevent arm clipping with walls.
+	Create tools model with texture
+	World generation.
+	Sounds.
+	Add durability to tools
+
+BUGS:
+	When an item drop, clips with others items
+
+CHANGES:
+	Change destruction animation:
+		Animate root, not only the hand.
+		When the hand(or item) is at max range in the animation cast the hit.
+	Add cd to the jump.
+	Set items custom destroy percentage.
