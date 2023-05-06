@@ -9,10 +9,11 @@ var item_drop_scn = preload("res://scenes/world/item_drop.tscn")
 
 var materials_path = "res://assets/3d_models/enviroment/"
 
-@onready var cube = $block/Cube
-var material = null
+@onready var cube = $cube_mesh/Cube
 
-@export var item_to_drop : PackedScene
+var material = null
+var cube_texture : String
+
 @export var amount_to_drop : int = 1
 @export var max_destroy : float = 100.0
 
@@ -25,9 +26,10 @@ func _set_destroy(value):
 	if destroy >= max_destroy:
 		destroy_block()
 
-func init(texture):
-	if texture == "cobblestone": max_destroy = 200.0
-	material = load(materials_path + list_materials_in_directory(texture))
+func init(_texture):
+	cube_texture = _texture
+	if cube_texture == "cobblestone": max_destroy = 200.0
+	material = load(materials_path + list_materials_in_directory(cube_texture))
 	cube.set_surface_override_material(0, material)
 
 func list_materials_in_directory(texture) -> String:
@@ -56,4 +58,6 @@ func destroy_block():
 	var item_drop = item_drop_scn.instantiate()
 	get_tree().get_root().add_child(item_drop)
 	item_drop.init(material, amount_to_drop, position)
+	
+	item_drop._set_itemContent(cube_texture)
 	queue_free()

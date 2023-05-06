@@ -1,5 +1,15 @@
 extends CharacterBody3D
 
+var itemContent : String = "": set = _set_itemContent, get = _get_itemContent
+
+var test = "oka_planks"
+
+func _get_itemContent():
+	return itemContent
+
+func _set_itemContent(newitemContent):
+	itemContent = newitemContent
+
 @onready var mesh_instance_3d = $MeshInstance3D
 var mesh = preload("res://assets/3d_models/enviroment/block_mesh.res").duplicate()
 var amount : int

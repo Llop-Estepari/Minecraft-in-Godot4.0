@@ -101,6 +101,7 @@ action_slot_down={
 
 3d_physics/layer_1="enviroment"
 3d_physics/layer_2="mobs"
+3d_physics/layer_4="items_dropped"
 
 [physics]
 

@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://u7au0uigbaio"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://scenes/world/block.gd" id="1_xdnyy"]
+[ext_resource type="Script" path="res://scenes/world/cube.gd" id="1_xdnyy"]
 [ext_resource type="ArrayMesh" uid="uid://fbpu60w4sq0e" path="res://assets/3d_models/enviroment/block_mesh.res" id="2_knt3e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5sh0p"]
 custom_solver_bias = 1.0
 
-[node name="block" type="StaticBody3D"]
+[node name="cube" type="StaticBody3D"]
 script = ExtResource("1_xdnyy")
 
-[node name="block" type="Node3D" parent="."]
+[node name="cube_mesh" type="Node3D" parent="."]
 
-[node name="Cube" type="MeshInstance3D" parent="block"]
+[node name="Cube" type="MeshInstance3D" parent="cube_mesh"]
 mesh = ExtResource("2_knt3e")
 skeleton = NodePath("")
 

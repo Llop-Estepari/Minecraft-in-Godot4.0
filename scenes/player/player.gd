@@ -19,14 +19,16 @@ var cur_speed = SPEED
 var direction
 var can_jump := true
 
-var can_destroy := true
-
 var mouse_sens = 0.1
 
-var cur_block
+var cur_cube
+var can_destroy := true
 #Left mouse pressed
 var jump_action := false
 var destroy_action := false
+
+var inventory : Array[Array] = [[],[],[],[],[],[],[],[],[],[]]
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -76,7 +78,7 @@ func _physics_process(delta):
 	#DEBUG
 	$HUD/Label.text = str(range_raycast.get_collider()) + str("\n", is_on_floor())
 	#
-	block_controller()
+	cube_controller()
 	movement(delta)
 	animation_controller()
 
@@ -112,20 +114,23 @@ func movement(delta):
 	
 	move_and_slide()
 
-func block_controller():
+func cube_controller():
 	if range_raycast.get_collider() is Block:
-		if cur_block != null: cur_block.unhover()
-		cur_block = range_raycast.get_collider()
-		cur_block.hover()
+		if cur_cube != null: cur_cube.unhover()
+		cur_cube = range_raycast.get_collider()
+		cur_cube.hover()
 	else:
-		if cur_block != null:
-			cur_block.unhover()
-			cur_block.reset_destroy()
-			cur_block = null
+		if cur_cube != null:
+			cur_cube.unhover()
+			cur_cube.reset_destroy()
+			cur_cube = null
 
 func try_destroy():
-	if cur_block != null:
-		cur_block._set_destroy(25)
+	if cur_cube != null:
+		cur_cube._set_destroy(25)
+
+func _on_item_area_area_entered(area):
+	var item = area.get_parent()
 
 func _on_jump_cd_timeout():
 	can_jump = true
