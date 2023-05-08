@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1dsrm2q3gqbb"]
+[gd_scene load_steps=22 format=3 uid="uid://c1dsrm2q3gqbb"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gys5p"]
+[ext_resource type="Script" path="res://scenes/player/arm_handler.gd" id="2_43007"]
 [ext_resource type="Script" path="res://scenes/player/HUD.gd" id="2_ph3sm"]
 [ext_resource type="Texture2D" uid="uid://cirt7vnfn3fd7" path="res://assets/img/hud/crosshair.png" id="3_jivcu"]
 [ext_resource type="Texture2D" uid="uid://dkgve8hb25gqn" path="res://assets/img/hud/inventory_squares.png" id="4_ercf1"]
@@ -90,7 +91,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player_arm:position")
+tracks/0/path = NodePath("arm_handler:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("player_arm:rotation")
+tracks/1/path = NodePath("arm_handler:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,7 +121,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player_arm:position")
+tracks/0/path = NodePath("arm_handler:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -132,7 +133,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("player_arm:rotation")
+tracks/1/path = NodePath("arm_handler:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -162,7 +163,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player_arm:position")
+tracks/0/path = NodePath("arm_handler:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +175,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("player_arm:rotation")
+tracks/1/path = NodePath("arm_handler:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -191,7 +192,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player_arm:position")
+tracks/0/path = NodePath("arm_handler:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -230,6 +231,134 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75154, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+current = true
+
+[node name="range_raycast" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -5)
+debug_shape_custom_color = Color(1, 0.815686, 0.894118, 0.0470588)
+debug_shape_thickness = 1
+
+[node name="arm_handler" type="Node3D" parent="Head"]
+transform = Transform3D(-0.2, 0, -5.07036e-07, 0, 0.2, 0, 5.07036e-07, 0, -0.2, 0.118294, -0.66, -0.142763)
+script = ExtResource("2_43007")
+
+[node name="slot1" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot1"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot2" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot2"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot3" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot3"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot4" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot4"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot5" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot5"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot6" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot6"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot7" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot7"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot8" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot8"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="slot9" type="Node3D" parent="Head/arm_handler"]
+transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
+visible = false
+
+[node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot9"]
+transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_3gtpw")
+skeleton = NodePath("")
+
+[node name="stone_axe" type="MeshInstance3D" parent="Head/arm_handler"]
+transform = Transform3D(0.0782751, 0, 1.99847, 0, 2, 0, -1.99847, 0, 0.0782751, -1.29663, 2.36065, 1.22347)
+visible = false
+mesh = SubResource("ArrayMesh_f0pe0")
+skeleton = NodePath("")
+
+[node name="Arm_AnimationPlayer" type="AnimationPlayer" parent="Head"]
+libraries = {
+"": SubResource("AnimationLibrary_vtg3a")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_lyxnk")
+
+[node name="ItemArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_5yc4e")
+
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("2_ph3sm")
 
@@ -253,6 +382,21 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="itemName" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -75.0
+offset_right = 20.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -310,50 +454,6 @@ layout_mode = 2
 
 [node name="slot9" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
 layout_mode = 2
-
-[node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75154, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
-current = true
-
-[node name="range_raycast" type="RayCast3D" parent="Head/Camera3D"]
-target_position = Vector3(0, 0, -5)
-debug_shape_custom_color = Color(1, 0.815686, 0.894118, 0.0470588)
-debug_shape_thickness = 1
-
-[node name="player_arm" type="Node3D" parent="Head"]
-transform = Transform3D(-0.2, 0, -5.07036e-07, 0, 0.2, 0, 5.07036e-07, 0, -0.2, 0.118294, -0.66, -0.142763)
-
-[node name="arms" type="MeshInstance3D" parent="Head/player_arm"]
-transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-visible = false
-cast_shadow = 0
-mesh = SubResource("ArrayMesh_3gtpw")
-skeleton = NodePath("")
-
-[node name="stone_axe" type="MeshInstance3D" parent="Head/player_arm"]
-transform = Transform3D(0.0782751, 0, 1.99847, 0, 2, 0, -1.99847, 0, 0.0782751, -1.29663, 2.36065, 1.22347)
-mesh = SubResource("ArrayMesh_f0pe0")
-skeleton = NodePath("")
-
-[node name="Arm_AnimationPlayer" type="AnimationPlayer" parent="Head"]
-libraries = {
-"": SubResource("AnimationLibrary_vtg3a")
-}
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
-shape = SubResource("CapsuleShape3D_lyxnk")
-
-[node name="ItemArea" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_5yc4e")
 
 [connection signal="timeout" from="Timers/jump_cd" to="." method="_on_jump_cd_timeout"]
 [connection signal="timeout" from="Timers/destroy_cd" to="." method="_on_destroy_cd_timeout"]

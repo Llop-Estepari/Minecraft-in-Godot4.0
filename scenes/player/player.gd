@@ -1,14 +1,14 @@
 extends CharacterBody3D
 
-signal item_selected(slot_pos)
-
 @onready var arm_animation_player : AnimationPlayer = $Head/Arm_AnimationPlayer
 
 @onready var jump_cd : Timer = $Timers/jump_cd
 @onready var destroy_cd : Timer = $Timers/destroy_cd
 
-@onready var head = $Head
+@onready var head : Node3D = $Head
 @onready var range_raycast : RayCast3D = $Head/Camera3D/range_raycast
+@onready var arm_handler : Node3D = $Head/arm_handler
+@onready var hud : CanvasLayer = $HUD
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 const SPEED = 3.0
@@ -27,8 +27,9 @@ var can_destroy := true
 var jump_action := false
 var destroy_action := false
 
-var inventory : Array[Array] = [[],[],[],[],[],[],[],[],[],[]]
-
+var cur_slot : int
+var inventory : Array[Array] = [["oka_planks", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0]]
+var max_slots : int = 64
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -62,17 +63,25 @@ func input_actions():
 		
 
 func inventory_controller():
-	if Input.is_key_pressed(KEY_1): emit_signal("item_selected", 0)
-	elif Input.is_key_pressed(KEY_2): emit_signal("item_selected", 1)
-	elif Input.is_key_pressed(KEY_3): emit_signal("item_selected", 2)
-	elif Input.is_key_pressed(KEY_4): emit_signal("item_selected", 3)
-	elif Input.is_key_pressed(KEY_5): emit_signal("item_selected", 4)
-	elif Input.is_key_pressed(KEY_6): emit_signal("item_selected", 5)
-	elif Input.is_key_pressed(KEY_7): emit_signal("item_selected", 6)
-	elif Input.is_key_pressed(KEY_8): emit_signal("item_selected", 7)
-	elif Input.is_key_pressed(KEY_9): emit_signal("item_selected", 8)
-	if Input.is_action_just_pressed("action_slot_up"): emit_signal("item_selected", -1)
-	elif Input.is_action_just_pressed("action_slot_down"): emit_signal("item_selected", -2)
+	if Input.is_key_pressed(KEY_1): switch_slot(0)
+	elif Input.is_key_pressed(KEY_2): switch_slot(1)
+	elif Input.is_key_pressed(KEY_3): switch_slot(2)
+	elif Input.is_key_pressed(KEY_4): switch_slot(3)
+	elif Input.is_key_pressed(KEY_5): switch_slot(4)
+	elif Input.is_key_pressed(KEY_6): switch_slot(5)
+	elif Input.is_key_pressed(KEY_7): switch_slot(6)
+	elif Input.is_key_pressed(KEY_8): switch_slot(7)
+	elif Input.is_key_pressed(KEY_9): switch_slot(8)
+	if Input.is_action_just_pressed("action_slot_up"): switch_slot(cur_slot+1)
+	elif Input.is_action_just_pressed("action_slot_down"): switch_slot(cur_slot-1)
+
+func switch_slot(slot : int):
+	if slot == 9: cur_slot = 0
+	elif slot < 0: cur_slot = 8
+	else: cur_slot = slot
+	
+	arm_handler.switch_slot_to(cur_slot)
+	hud.switch_slot_to(cur_slot)
 
 func _physics_process(delta):
 	#DEBUG
@@ -131,6 +140,23 @@ func try_destroy():
 
 func _on_item_area_area_entered(area):
 	var item = area.get_parent()
+	find_suitable_slot(item)
+
+func find_suitable_slot(new_item) -> void:
+	for slot in inventory.size():
+		if inventory[slot][1] < max_slots: 
+			add_items_to_inventory_slot(slot, new_item)
+		if new_item._get_amount() <= 0:
+			return
+
+func add_items_to_inventory_slot(slot, item):
+	while item._get_amount() > 0:
+		if inventory[slot][1] == max_slots:
+			return
+		inventory[slot][1] += 1
+		arm_handler.switch_mesh(item.pickup_item(), cur_slot)
+		hud.add_item_to_inventory(slot, item.inventroy_item_texture, inventory[slot][1])
+		
 
 func _on_jump_cd_timeout():
 	can_jump = true

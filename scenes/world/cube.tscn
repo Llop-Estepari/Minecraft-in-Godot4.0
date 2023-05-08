@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://lbkkt6e4m7ms"]
 
 [ext_resource type="Script" path="res://scenes/world/cube.gd" id="1_xdnyy"]
 [ext_resource type="ArrayMesh" uid="uid://fbpu60w4sq0e" path="res://assets/3d_models/enviroment/block_mesh.res" id="2_knt3e"]
