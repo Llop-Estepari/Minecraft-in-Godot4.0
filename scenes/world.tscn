@@ -11,9 +11,11 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_q86g1")
 
 [sub_resource type="Environment" id="Environment_6pfd0"]
-background_mode = 2
+background_mode = 1
 background_color = Color(0.501961, 0.501961, 0.501961, 1)
+background_energy_multiplier = 0.2
 sky = SubResource("Sky_wtukf")
+ambient_light_color = Color(0.741176, 0.741176, 0.741176, 1)
 tonemap_mode = 2
 
 [node name="world" type="Node3D"]

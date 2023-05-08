@@ -57,7 +57,7 @@ func reset_destroy():
 func destroy_block():
 	var item_drop = item_drop_scn.instantiate()
 	get_tree().get_root().add_child(item_drop)
-	item_drop.init(material, amount_to_drop, position)
+	item_drop.init(cube_texture, material, amount_to_drop, position)
 	
 	item_drop._set_itemContent(cube_texture)
 	queue_free()

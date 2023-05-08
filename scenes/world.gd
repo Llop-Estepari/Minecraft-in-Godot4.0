@@ -17,6 +17,8 @@ func _ready():
 			for v in v_cells:
 				create_cube(Vector3(h, y, v), "dirt")
 				create_cube(Vector3(-h, y, -v), "dirt")
+				create_cube(Vector3(h, y, -v), "dirt")
+				create_cube(Vector3(-h, y, v), "dirt")
 	generate_structure(house)
 
 func create_cube(pos : Vector3i, texture: String):
@@ -29,13 +31,16 @@ func create_cube(pos : Vector3i, texture: String):
 	cube.position = pos
 
 var house : Array[String] = [
-	"X","X"," ","X","X","/",
-	"X","X"," ","X","X","/",
 	"X","X","X","X","X","/",
-	" ","X","X","X"," ","/",
-	" "," ","X"," "," ","/",]
+	"X"," "," "," ","X","/",
+	"X"," "," "," ","X","/",
+	"X"," "," "," ","X","/",
+	"X","X","X","X","X","/",
+	"X"," "," "," ","X","/",
+	"X"," "," "," ","X","/",
+	"X","X","X","X","X","/"]
 
-var house_depth = 6
+var house_depth = 3
 
 func generate_structure(structure):
 	var start_pos = get_random_position()
@@ -55,7 +60,7 @@ func create_line(height, start_pos, cur_line_array):
 	var pos = 0
 	for i in cur_line_array:
 		if i == "X":
-			create_cube(start_pos + Vector3i(pos, height, 0), "oka_planks")
+			create_cube(start_pos + Vector3i(pos, height, 0), "oak_planks")
 		pos += 1
 
 func get_random_position() -> Vector3i:

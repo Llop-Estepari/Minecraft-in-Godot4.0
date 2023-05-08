@@ -28,7 +28,7 @@ var jump_action := false
 var destroy_action := false
 
 var cur_slot : int
-var inventory : Array[Array] = [["oka_planks", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0]]
+var inventory : Array[Array] = [["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0]]
 var max_slots : int = 64
 
 func _ready():
@@ -54,13 +54,12 @@ func input_actions():
 		can_destroy = false
 		destroy_cd.start()
 	
-	if Input.is_action_pressed("action_sprint") and Input.get_axis("forward", "backward") != 0:
+	if Input.is_action_pressed("action_sprint") and Input.get_axis("forward", "backward") != 0 and not destroy_action:
 		arm_animation_player.speed_scale = 1.5
 		cur_speed = RUN_SPEED
 	else:
 		cur_speed = SPEED
 		arm_animation_player.speed_scale = 1.0
-		
 
 func inventory_controller():
 	if Input.is_key_pressed(KEY_1): switch_slot(0)
@@ -81,11 +80,11 @@ func switch_slot(slot : int):
 	else: cur_slot = slot
 	
 	arm_handler.switch_slot_to(cur_slot)
-	hud.switch_slot_to(cur_slot)
+	hud.switch_slot_to()
 
 func _physics_process(delta):
 	#DEBUG
-	$HUD/Label.text = str(range_raycast.get_collider()) + str("\n", is_on_floor())
+	#$HUD/Label.text = str(range_raycast.get_collider()) + str("\n", is_on_floor())
 	#
 	cube_controller()
 	movement(delta)
@@ -142,20 +141,21 @@ func _on_item_area_area_entered(area):
 	var item = area.get_parent()
 	find_suitable_slot(item)
 
-func find_suitable_slot(new_item) -> void:
+func find_suitable_slot(new_item):
 	for slot in inventory.size():
-		if inventory[slot][1] < max_slots: 
-			add_items_to_inventory_slot(slot, new_item)
+		if inventory[slot][0] == new_item._get_itemContent() or inventory[slot][0] == "":
+			if inventory[slot][0] == "": inventory[slot][0] = new_item._get_itemContent()
+			if inventory[slot][1] < max_slots: add_items_to_inventory_slot(slot, new_item)
 		if new_item._get_amount() <= 0:
-			return
+			break
 
 func add_items_to_inventory_slot(slot, item):
 	while item._get_amount() > 0:
 		if inventory[slot][1] == max_slots:
 			return
 		inventory[slot][1] += 1
-		arm_handler.switch_mesh(item.pickup_item(), cur_slot)
-		hud.add_item_to_inventory(slot, item.inventroy_item_texture, inventory[slot][1])
+		arm_handler.switch_mesh(item.pickup_item(), slot)
+		hud.add_item_to_inventory(slot, inventory[slot][1])
 		
 
 func _on_jump_cd_timeout():

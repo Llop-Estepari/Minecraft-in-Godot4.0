@@ -1,5 +1,6 @@
 extends Node3D
 
+
 @onready var slots : Array = self.get_children()
 
 func switch_slot_to(new_slot : int):

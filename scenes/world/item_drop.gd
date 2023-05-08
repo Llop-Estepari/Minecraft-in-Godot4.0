@@ -16,10 +16,8 @@ func _get_amount(): return amount
 
 func _set_amount(value): amount = value
 
-var inventroy_item_texture = preload("res://assets/img/hud/items/oak_planks_inventory.png")
-var items_icon_path = "res://assets/img/hud/items/"
-
-func init(material : StandardMaterial3D, amnt, pos, new_mesh = mesh):
+func init(item_to_drop, material : StandardMaterial3D, amnt, pos, new_mesh = mesh):
+	item_content = item_to_drop
 	amount = amnt
 	new_mesh.surface_set_material(0, material)
 	mesh_instance_3d.mesh = mesh
@@ -35,6 +33,3 @@ func pickup_item() -> Mesh:
 	amount -= 1
 	if amount == 0: queue_free()
 	return mesh
-
-func enable_area3d():
-	area_3d.collision_layer = 8

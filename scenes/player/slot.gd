@@ -5,7 +5,7 @@ extends PanelContainer
 @onready var amount_label = $amount_label
 
 func set_item(texture, amount):
-	item_texture.texture = texture
+	item_texture.texture = load(texture)
 	amount_label.text = str(amount)
 	if int(amount_label.text) == 1:
 		amount_label.hide()
@@ -17,8 +17,3 @@ func select():
 
 func unselect():
 	texture_rect_hover.hide()
-
-func get_item_name() -> String:
-	if item_texture.texture == null:
-		return "empty"
-	return item_texture.texture.resource_name
