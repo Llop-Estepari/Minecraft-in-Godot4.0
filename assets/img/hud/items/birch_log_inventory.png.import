@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2schv1tmx747"
-path.s3tc="res://.godot/imported/birch_log_inventory.png-f676193d854f14b271b9c00623f208e7.s3tc.ctex"
+path="res://.godot/imported/birch_log_inventory.png-f676193d854f14b271b9c00623f208e7.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/img/hud/items/birch_log_inventory.png"
-dest_files=["res://.godot/imported/birch_log_inventory.png-f676193d854f14b271b9c00623f208e7.s3tc.ctex"]
+dest_files=["res://.godot/imported/birch_log_inventory.png-f676193d854f14b271b9c00623f208e7.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

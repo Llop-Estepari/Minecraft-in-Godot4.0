@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://lbkkt6e4m7ms"]
+[gd_scene load_steps=5 format=3 uid="uid://dgy4k5g7223as"]
 
 [ext_resource type="Script" path="res://scenes/world/cube.gd" id="1_xdnyy"]
-[ext_resource type="ArrayMesh" uid="uid://fbpu60w4sq0e" path="res://assets/3d_models/enviroment/block_mesh.res" id="2_knt3e"]
+[ext_resource type="ArrayMesh" uid="uid://fbpu60w4sq0e" path="res://assets/3d_models/enviroment/cube_mesh.res" id="2_1ie17"]
+[ext_resource type="Material" uid="uid://dc7pl3qpnc57n" path="res://assets/3d_models/enviroment/dirt.tres" id="3_byuvy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5sh0p"]
 custom_solver_bias = 1.0
@@ -9,45 +10,20 @@ custom_solver_bias = 1.0
 [node name="cube" type="StaticBody3D"]
 script = ExtResource("1_xdnyy")
 
-[node name="cube_mesh" type="Node3D" parent="."]
-
-[node name="Cube" type="MeshInstance3D" parent="cube_mesh"]
-mesh = ExtResource("2_knt3e")
+[node name="CubeMesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+lod_bias = 0.001
+gi_mode = 0
+mesh = ExtResource("2_1ie17")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_byuvy")
+
+[node name="DestroyMesh" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+lod_bias = 0.001
+gi_mode = 0
+mesh = ExtResource("2_1ie17")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_5sh0p")
-
-[node name="info" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="T_destroy_label" type="Label3D" parent="info"]
-transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 0.503083, 0)
-text = "0"
-font_size = 40
-
-[node name="T_destroy_label4" type="Label3D" parent="info"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.503, 0)
-text = "0"
-font_size = 40
-
-[node name="T_destroy_label2" type="Label3D" parent="info"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51)
-text = "0"
-font_size = 40
-
-[node name="T_destroy_label5" type="Label3D" parent="info"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.51, 0, 0)
-text = "0"
-font_size = 40
-
-[node name="T_destroy_label6" type="Label3D" parent="info"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.51, 0, 0)
-text = "0"
-font_size = 40
-
-[node name="T_destroy_label3" type="Label3D" parent="info"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.51)
-text = "0"
-font_size = 40

@@ -1,11 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1dsrm2q3gqbb"]
+[gd_scene load_steps=19 format=3 uid="uid://c1dsrm2q3gqbb"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gys5p"]
 [ext_resource type="Script" path="res://scenes/player/arm_handler.gd" id="2_43007"]
-[ext_resource type="Script" path="res://scenes/player/HUD.gd" id="2_ph3sm"]
-[ext_resource type="Texture2D" uid="uid://cirt7vnfn3fd7" path="res://assets/img/hud/crosshair.png" id="3_jivcu"]
-[ext_resource type="Texture2D" uid="uid://dkgve8hb25gqn" path="res://assets/img/hud/inventory_squares.png" id="4_ercf1"]
-[ext_resource type="PackedScene" uid="uid://bwjd7wqmeh6uv" path="res://scenes/player/slot.tscn" id="5_n2hbo"]
+[ext_resource type="PackedScene" uid="uid://cd5mh5wd5ohyu" path="res://scenes/player/hud.tscn" id="5_pe27e"]
 [ext_resource type="Texture2D" uid="uid://xwpvym5knfpb" path="res://assets/3d_models/character/player_arm_steve_arm.png" id="6_6qjhm"]
 [ext_resource type="Texture2D" uid="uid://h48c3ewidlak" path="res://assets/3d_models/character/tools/axe_mesh_Image_0.png" id="7_077fl"]
 
@@ -215,7 +212,8 @@ radius = 0.3
 height = 1.9
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5yc4e"]
-height = 2.3
+height = 3.0
+radius = 0.9
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -236,6 +234,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75154, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+visible = false
 current = true
 
 [node name="range_raycast" type="RayCast3D" parent="Head/Camera3D"]
@@ -349,6 +348,7 @@ libraries = {
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_lyxnk")
 
 [node name="ItemArea" type="Area3D" parent="."]
@@ -356,114 +356,11 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ItemArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
 shape = SubResource("CylinderShape3D_5yc4e")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("2_ph3sm")
-
-[node name="crosshair" type="TextureRect" parent="HUD"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_jivcu")
-expand_mode = 4
-
-[node name="Label" type="Label" parent="HUD"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="itemName" type="Label" parent="HUD"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -75.0
-offset_right = 20.0
-offset_bottom = -52.0
-grow_horizontal = 2
-grow_vertical = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="inventory" type="HBoxContainer" parent="HUD"]
-custom_minimum_size = Vector2(380, 45)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -48.0
-offset_right = 200.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 1
-alignment = 1
-
-[node name="slots_texture" type="TextureRect" parent="HUD/inventory"]
-custom_minimum_size = Vector2(400, 48)
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("4_ercf1")
-expand_mode = 5
-
-[node name="slots_container" type="HBoxContainer" parent="HUD/inventory/slots_texture"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = -4
-
-[node name="slot1" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot2" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot3" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot4" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot5" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot6" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot7" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot8" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="slot9" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_n2hbo")]
-layout_mode = 2
-
-[node name="FPSLabel" type="Label" parent="HUD"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -48.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 31.0
-grow_horizontal = 0
+[node name="HUD" parent="." instance=ExtResource("5_pe27e")]
 
 [connection signal="timeout" from="Timers/jump_cd" to="." method="_on_jump_cd_timeout"]
 [connection signal="timeout" from="Timers/destroy_cd" to="." method="_on_destroy_cd_timeout"]

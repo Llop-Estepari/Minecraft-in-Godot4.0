@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8tokofpj4twg"
-path.s3tc="res://.godot/imported/inventory_square_selected.png-b1a56a41a373000b7f6484cb6614625a.s3tc.ctex"
+path="res://.godot/imported/inventory_square_selected.png-b1a56a41a373000b7f6484cb6614625a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/img/hud/inventory_square_selected.png"
-dest_files=["res://.godot/imported/inventory_square_selected.png-b1a56a41a373000b7f6484cb6614625a.s3tc.ctex"]
+dest_files=["res://.godot/imported/inventory_square_selected.png-b1a56a41a373000b7f6484cb6614625a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

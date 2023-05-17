@@ -3,21 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://h48c3ewidlak"
-path.s3tc="res://.godot/imported/axe_mesh_Image_0.png-6f2eb8b49e0e0aabbd0923d274621553.s3tc.ctex"
+path="res://.godot/imported/axe_mesh_Image_0.png-6f2eb8b49e0e0aabbd0923d274621553.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/3d_models/character/tools/axe_mesh_Image_0.png"
-dest_files=["res://.godot/imported/axe_mesh_Image_0.png-6f2eb8b49e0e0aabbd0923d274621553.s3tc.ctex"]
+dest_files=["res://.godot/imported/axe_mesh_Image_0.png-6f2eb8b49e0e0aabbd0923d274621553.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -1,49 +1,43 @@
 class_name Block
 extends StaticBody3D
 
-@onready var info = $info
+var destroy_shader = preload("res://assets/3d_models/enviroment/destroy_material.tres").duplicate()
 
-#birch_log, cobblestone, oka_planks, dirt, birch_leaves
-var outline_material = preload("res://scenes/world/selected_block.tres")
-var item_drop_scn = preload("res://scenes/world/item_drop.tscn")
+#Destruction labels
+@onready var cube : MeshInstance3D = $CubeMesh
+@onready var destroy_mesh : MeshInstance3D = $DestroyMesh
 
-var materials_path = "res://assets/3d_models/enviroment/"
+var outline_material  : StandardMaterial3D = preload("res://scenes/world/selected_block.tres")
+var item_drop_scn : PackedScene = preload("res://scenes/world/items/item_drop.tscn")
 
-@onready var cube = $cube_mesh/Cube
-
-var material = null
-var cube_texture : String
-
-@export var amount_to_drop : int = 1
-@export var max_destroy : float = 100.0
-
+var cube_id : int = 0
+var hardness : float = 100.0
 var destroy = 0.0: set = _set_destroy
 
 func _set_destroy(value):
 	destroy += value
-	for l in info.get_children():
-		l.text = str(destroy)
-	if destroy >= max_destroy:
+	if destroy == 0.0: 
+		destroy_mesh.set_surface_override_material(0, null)
+	elif destroy > 1.0 and destroy < hardness * 33 / 100:
+		destroy_shader.albedo_texture = load("res://assets/3d_models/enviroment/destroy_phase0.png")
+		destroy_mesh.set_surface_override_material(0, destroy_shader)
+	elif destroy > hardness * 33 / 100 and destroy < hardness * 66 / 100:
+		destroy_shader.albedo_texture = load("res://assets/3d_models/enviroment/destroy_phase1.png")
+		destroy_mesh.set_surface_override_material(0, destroy_shader)
+	elif destroy > hardness * 66 / 100 and destroy < hardness:
+		destroy_shader.albedo_texture = load("res://assets/3d_models/enviroment/destroy_phase2.png")
+		destroy_mesh.set_surface_override_material(0, destroy_shader)
+	
+	if destroy >= hardness:
 		destroy_block()
 
-func init(_texture):
-	cube_texture = _texture
-	if cube_texture == "cobblestone": max_destroy = 200.0
-	material = load(materials_path + list_materials_in_directory(cube_texture))
-	cube.set_surface_override_material(0, material)
+func init(id):
+	cube_id = id
+	set_cube()
 
-func list_materials_in_directory(texture) -> String:
-	var dir = DirAccess.open(materials_path)
-	dir.list_dir_begin()
-	while true:
-		var file = dir.get_next()
-		if file == "":
-			break
-		elif texture + ".tres" in file:
-			dir.list_dir_end()
-			return file
-	dir.list_dir_end()
-	return "null"
+func set_cube():
+	hardness = Items.items_list[cube_id][7]
+	cube.set_surface_override_material(0, load(Items.items_list[cube_id][5]))
 
 func hover():
 	cube.material_overlay = outline_material
@@ -52,12 +46,10 @@ func unhover():
 	cube.material_overlay = null
 
 func reset_destroy():
-	_set_destroy(0.0)
+	destroy = 0.0
 
 func destroy_block():
 	var item_drop = item_drop_scn.instantiate()
 	get_tree().get_root().add_child(item_drop)
-	item_drop.init(cube_texture, material, amount_to_drop, position)
-	
-	item_drop._set_itemContent(cube_texture)
+	item_drop.init(cube_id, position)
 	queue_free()

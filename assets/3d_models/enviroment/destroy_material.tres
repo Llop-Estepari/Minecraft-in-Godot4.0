@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c6wnk6ukglioe"]
+
+[ext_resource type="Texture2D" uid="uid://cwgvg4a6xu5hj" path="res://assets/3d_models/enviroment/destroy_phase0.png" id="1_r67jx"]
+
+[resource]
+transparency = 4
+shading_mode = 0
+albedo_texture = ExtResource("1_r67jx")
+heightmap_scale = -0.766
+texture_filter = 0
+texture_repeat = false
+grow = true
+grow_amount = 0.01

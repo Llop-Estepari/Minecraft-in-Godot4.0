@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kkxksey50uej"
-path.s3tc="res://.godot/imported/stick.png-1997920cfc9a18ac7eb20e90b6a7e60d.s3tc.ctex"
+uid="uid://bojfqx055oenc"
+path.s3tc="res://.godot/imported/shadow.png-190d6130b795872956da561ec02e4260.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/img/hud/items/stick.png"
-dest_files=["res://.godot/imported/stick.png-1997920cfc9a18ac7eb20e90b6a7e60d.s3tc.ctex"]
+source_file="res://assets/img/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-190d6130b795872956da561ec02e4260.s3tc.ctex"]
 
 [params]
 

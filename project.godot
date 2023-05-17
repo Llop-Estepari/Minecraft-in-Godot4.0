@@ -15,6 +15,10 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://minecraft_logo.png"
 
+[autoload]
+
+Items="*res://scenes/world/items/items.gd"
+
 [display]
 
 window/size/viewport_width=640
@@ -29,7 +33,7 @@ texture={
 "compress/hdr_compression": 1,
 "compress/high_quality": false,
 "compress/lossy_quality": 0.7,
-"compress/mode": 2,
+"compress/mode": 0,
 "compress/normal_map": 0,
 "detect_3d/compress_to": 0,
 "mipmaps/generate": true,

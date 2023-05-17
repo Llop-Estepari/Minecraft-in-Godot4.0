@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpv821pk5moaq"]
+
+[ext_resource type="Script" path="res://scenes/world/items/item_drop.gd" id="1_ic57i"]
+[ext_resource type="ArrayMesh" uid="uid://fbpu60w4sq0e" path="res://assets/3d_models/enviroment/cube_mesh.res" id="2_p85oq"]
+[ext_resource type="Texture2D" uid="uid://bojfqx055oenc" path="res://assets/img/shadow.png" id="3_lh7u6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0wuv"]
+size = Vector3(0.25, 0.4, 0.25)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6eaki"]
+radius = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uj41"]
+transparency = 4
+albedo_color = Color(1, 1, 1, 0.784314)
+albedo_texture = ExtResource("3_lh7u6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lwhti"]
+material = SubResource("StandardMaterial3D_3uj41")
+size = Vector2(0.4, 0.4)
+
+[node name="item_drop" type="CharacterBody3D"]
+collision_layer = 8
+script = ExtResource("1_ic57i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185, 0)
+shape = SubResource("BoxShape3D_f0wuv")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_6eaki")
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="CubeMesh" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.06, 0)
+mesh = ExtResource("2_p85oq")
+
+[node name="ShadowMesh" type="MeshInstance3D" parent="Graphics"]
+visible = false
+mesh = SubResource("PlaneMesh_lwhti")
+skeleton = NodePath("../..")

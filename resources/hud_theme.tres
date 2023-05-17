@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bdcsoxlchd7kb"]
+
+[ext_resource type="FontFile" uid="uid://dw4jmmlvx0pxb" path="res://assets/fonts/Perfect DOS VGA 437 Win.ttf" id="1_q3taq"]
+
+[resource]
+default_font = ExtResource("1_q3taq")
+default_font_size = 20
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 6

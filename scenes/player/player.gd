@@ -28,8 +28,18 @@ var jump_action := false
 var destroy_action := false
 
 var cur_slot : int
-var inventory : Array[Array] = [["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0],["", 0]]
+var inventory : Array[Array] = [[-1, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0],[-1, 0]]
 var max_slots : int = 64
+
+var exp_lvl : int = 0
+var exp_amnt : int : set = _set_exp_amnt
+
+func _set_exp_amnt(amount):
+	exp_amnt += amount
+	if exp_amnt == 100:
+		exp_lvl += 1
+		exp_amnt = 0
+	hud.set_new_exp_value(exp_amnt)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -83,9 +93,6 @@ func switch_slot(slot : int):
 	hud.switch_slot_to()
 
 func _physics_process(delta):
-	#DEBUG
-	#$HUD/Label.text = str(range_raycast.get_collider()) + str("\n", is_on_floor())
-	#
 	cube_controller()
 	movement(delta)
 	animation_controller()
@@ -105,7 +112,6 @@ func movement(delta):
 		can_jump = false
 		jump_cd.start()
 		velocity.y = JUMP_VELOCITY
-	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -140,11 +146,12 @@ func try_destroy():
 func _on_item_area_area_entered(area):
 	var item = area.get_parent()
 	find_suitable_slot(item)
+	_set_exp_amnt(25)
 
 func find_suitable_slot(new_item):
 	for slot in inventory.size():
-		if inventory[slot][0] == new_item._get_itemContent() or inventory[slot][0] == "":
-			if inventory[slot][0] == "": inventory[slot][0] = new_item._get_itemContent()
+		if inventory[slot][0] == new_item._get_item_id() or inventory[slot][0] == -1:
+			if inventory[slot][0] == -1: inventory[slot][0] = new_item._get_item_id()
 			if inventory[slot][1] < max_slots: add_items_to_inventory_slot(slot, new_item)
 		if new_item._get_amount() <= 0:
 			break
@@ -154,7 +161,8 @@ func add_items_to_inventory_slot(slot, item):
 		if inventory[slot][1] == max_slots:
 			return
 		inventory[slot][1] += 1
-		arm_handler.switch_mesh(item.pickup_item(), slot)
+		item.pickup_item()
+		arm_handler.switch_mesh(item._get_item_id(), slot)
 		hud.add_item_to_inventory(slot, inventory[slot][1])
 		
 

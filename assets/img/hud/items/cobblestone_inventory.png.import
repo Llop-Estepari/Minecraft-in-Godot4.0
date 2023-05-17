@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://n8eebrjakhsk"
-path.s3tc="res://.godot/imported/cobblestone_inventory.png-bdf183b55353a9f68ce6dc70f70dc16c.s3tc.ctex"
+path="res://.godot/imported/cobblestone_inventory.png-bdf183b55353a9f68ce6dc70f70dc16c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/img/hud/items/cobblestone_inventory.png"
-dest_files=["res://.godot/imported/cobblestone_inventory.png-bdf183b55353a9f68ce6dc70f70dc16c.s3tc.ctex"]
+dest_files=["res://.godot/imported/cobblestone_inventory.png-bdf183b55353a9f68ce6dc70f70dc16c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

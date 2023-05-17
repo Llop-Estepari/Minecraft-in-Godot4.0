@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b58bgs2kl1dbb"
-path.s3tc="res://.godot/imported/block_oak_planks.png-23c1be5e3048de6aeb8373a7b157dfce.s3tc.ctex"
+uid="uid://dd0fxxh4hmb34"
+path="res://.godot/imported/exp_bar_progress.png-cbdfad84b7586f354d390f6c92493efb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/3d_models/enviroment/block_oak_planks.png"
-dest_files=["res://.godot/imported/block_oak_planks.png-23c1be5e3048de6aeb8373a7b157dfce.s3tc.ctex"]
+source_file="res://assets/img/hud/exp_bar_progress.png"
+dest_files=["res://.godot/imported/exp_bar_progress.png-cbdfad84b7586f354d390f6c92493efb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

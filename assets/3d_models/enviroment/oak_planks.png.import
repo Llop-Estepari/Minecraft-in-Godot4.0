@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0wcjbapgkgoo"
-path.s3tc="res://.godot/imported/oak_planks.png-c8b038d4bb4c74d86b745a250dca9b1c.s3tc.ctex"
+path="res://.godot/imported/oak_planks.png-c8b038d4bb4c74d86b745a250dca9b1c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/3d_models/enviroment/oak_planks.png"
-dest_files=["res://.godot/imported/oak_planks.png-c8b038d4bb4c74d86b745a250dca9b1c.s3tc.ctex"]
+dest_files=["res://.godot/imported/oak_planks.png-c8b038d4bb4c74d86b745a250dca9b1c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

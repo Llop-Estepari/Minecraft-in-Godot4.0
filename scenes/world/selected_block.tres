@@ -1,6 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cgaiwuyxn7o13"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgaiwuyxn7o13"]
+
+[ext_resource type="Texture2D" uid="uid://ca47w3eudct1r" path="res://scenes/world/selecte_cube.png" id="1_6n7x7"]
 
 [resource]
-transparency = 4
+transparency = 2
+alpha_scissor_threshold = 0.65
+alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_color = Color(0.929412, 0.929412, 0.929412, 0.117647)
+albedo_texture = ExtResource("1_6n7x7")
