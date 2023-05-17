@@ -233,8 +233,8 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75154, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
 visible = false
+cull_mask = 1048571
 current = true
 
 [node name="range_raycast" type="RayCast3D" parent="Head/Camera3D"]
@@ -251,6 +251,7 @@ transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot1"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -261,6 +262,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot2"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -271,6 +273,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot3"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -281,6 +284,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot4"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -291,6 +295,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot5"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -301,6 +306,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot6"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -311,6 +317,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot7"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -321,6 +328,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot8"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -331,6 +339,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot9"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
+layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")

@@ -9,5 +9,4 @@ albedo_texture = ExtResource("1_r67jx")
 heightmap_scale = -0.766
 texture_filter = 0
 texture_repeat = false
-grow = true
-grow_amount = 0.01
+grow_amount = 0.005
