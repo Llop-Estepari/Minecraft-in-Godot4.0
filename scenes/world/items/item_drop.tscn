@@ -38,6 +38,7 @@ shape = SubResource("SphereShape3D_6eaki")
 
 [node name="CubeMesh" type="MeshInstance3D" parent="Graphics"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.06, 0)
+cast_shadow = 0
 mesh = ExtResource("2_p85oq")
 
 [node name="ShadowMesh" type="MeshInstance3D" parent="Graphics"]

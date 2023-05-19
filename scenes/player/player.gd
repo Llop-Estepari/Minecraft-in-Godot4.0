@@ -92,6 +92,9 @@ func switch_slot(slot : int):
 	arm_handler.switch_slot_to(cur_slot)
 	hud.switch_slot_to()
 
+func _process(delta):
+	hud.set_cam_transform(head.rotation_degrees.x, rotation_degrees.y, global_position)
+
 func _physics_process(delta):
 	cube_controller()
 	movement(delta)
@@ -130,18 +133,20 @@ func movement(delta):
 
 func cube_controller():
 	if range_raycast.get_collider() is Block:
-		if cur_cube != null: cur_cube.unhover()
+		if cur_cube != null and cur_cube != range_raycast.get_collider(): reset_cube()
 		cur_cube = range_raycast.get_collider()
 		cur_cube.hover()
-	else:
+	elif range_raycast.get_collider() == null:
 		if cur_cube != null:
-			cur_cube.unhover()
-			cur_cube.reset_destroy()
-			cur_cube = null
+			reset_cube()
+
+func reset_cube():
+	cur_cube.reset_cube()
+	cur_cube = null
 
 func try_destroy():
 	if cur_cube != null:
-		cur_cube._set_destroy(25)
+		cur_cube.add_destruction(25)
 
 func _on_item_area_area_entered(area):
 	var item = area.get_parent()

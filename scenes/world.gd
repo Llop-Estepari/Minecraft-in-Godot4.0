@@ -5,7 +5,7 @@ var cube_scn = preload("res://scenes/world/cube.tscn")
 @onready var cubes = $Cubes
 
 var h_cells : int = 10
-var world_height := 7
+var world_height := 2
 var v_cells : int = 10
 
 var array_cubes : Array[Vector3i]

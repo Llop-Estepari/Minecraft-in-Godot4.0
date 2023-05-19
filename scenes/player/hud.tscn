@@ -11,6 +11,23 @@
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_r84an")
 
+[node name="ArmsCamera" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="ArmsCamera"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918724
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="ArmCam" type="Camera3D" parent="ArmsCamera/SubViewport"]
+cull_mask = 2
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -19,7 +36,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_we3x0")
-metadata/_edit_lock_ = true
 
 [node name="FPSLabel" type="Label" parent="HUD"]
 layout_mode = 1
@@ -31,9 +47,9 @@ offset_bottom = 32.0
 grow_horizontal = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="crosshair" type="TextureRect" parent="HUD"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,10 +64,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_qrp6p")
 expand_mode = 4
-metadata/_edit_lock_ = true
 
 [node name="inventory" type="HBoxContainer" parent="HUD"]
-custom_minimum_size = Vector2(400, 45)
+custom_minimum_size = Vector2(200, 23)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -65,7 +80,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 1
 alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="slots_texture" type="TextureRect" parent="HUD/inventory"]
 custom_minimum_size = Vector2(400, 48)
@@ -75,9 +89,18 @@ texture = ExtResource("4_uu1mx")
 expand_mode = 5
 
 [node name="slots_container" type="HBoxContainer" parent="HUD/inventory/slots_texture"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -48.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/separation = -4
 
 [node name="slot1" parent="HUD/inventory/slots_texture/slots_container" instance=ExtResource("5_nj1yn")]
@@ -109,7 +132,7 @@ layout_mode = 2
 
 [node name="ExpProgressBar" type="TextureProgressBar" parent="HUD"]
 modulate = Color(1, 1, 1, 0.862745)
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(400, 10)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -117,9 +140,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -200.0
-offset_top = -60.0
+offset_top = -66.0
 offset_right = 200.0
-offset_bottom = -50.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -127,7 +150,6 @@ size_flags_vertical = 4
 nine_patch_stretch = true
 texture_under = ExtResource("6_jy6el")
 texture_progress = ExtResource("7_bwv1v")
-metadata/_edit_lock_ = true
 
 [node name="ExpLvlLabel" type="Label" parent="HUD"]
 custom_minimum_size = Vector2(40, 32)
@@ -138,16 +160,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -78.0
+offset_top = -83.0
 offset_right = 20.0
-offset_bottom = -46.0
+offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.541176, 0.72549, 0.388235, 1)
 theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="itemName" type="Label" parent="HUD"]
 layout_mode = 1

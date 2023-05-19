@@ -4,6 +4,8 @@ var icons_path = "res://assets/img/hud/items/"
 
 @onready var player = $".."
 
+@onready var arm_cam : Camera3D = $ArmsCamera/SubViewport/ArmCam
+
 @onready var slots = $HUD/inventory/slots_texture/slots_container.get_children()
 @onready var item_name = $HUD/itemName
 @onready var fps_label = $HUD/FPSLabel
@@ -32,3 +34,8 @@ func set_new_exp_value(new_value):
 	exp_progress_bar.value = new_value
 	if player.exp_lvl >= 1:
 		exp_lvl_label.text = str(player.exp_lvl)
+
+func set_cam_transform(new_x, new_y, new_pos):
+	arm_cam.rotation_degrees.x = new_x
+	arm_cam.rotation_degrees.y = new_y
+	arm_cam.position = new_pos

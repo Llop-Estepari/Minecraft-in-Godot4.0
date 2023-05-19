@@ -15,7 +15,7 @@ var hardness : float = 100.0
 var destroy = 0.0: set = _set_destroy
 
 func _set_destroy(value):
-	destroy += value
+	destroy = value
 	if destroy == 0.0: 
 		destroy_mesh.set_surface_override_material(0, null)
 	elif destroy > 1.0 and destroy < hardness * 33 / 100:
@@ -31,6 +31,9 @@ func _set_destroy(value):
 	if destroy >= hardness:
 		destroy_block()
 
+func add_destruction(value):
+	destroy = destroy + value
+
 func init(id):
 	cube_id = id
 	set_cube()
@@ -45,7 +48,8 @@ func hover():
 func unhover():
 	cube.material_overlay = null
 
-func reset_destroy():
+func reset_cube():
+	unhover()
 	destroy = 0.0
 
 func destroy_block():

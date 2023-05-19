@@ -21,10 +21,12 @@ Items="*res://scenes/world/items/items.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
 window/size/window_width_override=1280
 window/size/window_height_override=720
+window/stretch/mode="viewport"
 
 [importer_defaults]
 
@@ -124,7 +126,7 @@ action_inventory={
 [rendering]
 
 occlusion_culling/bvh_build_quality=1
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/quality/msaa_3d=2
 occlusion_culling/use_occlusion_culling=true

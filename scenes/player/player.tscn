@@ -230,11 +230,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75154, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-visible = false
-cull_mask = 1048571
+cull_mask = 1048573
 current = true
 
 [node name="range_raycast" type="RayCast3D" parent="Head/Camera3D"]
@@ -251,7 +249,7 @@ transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot1"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -262,7 +260,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot2"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -273,7 +271,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot3"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -284,7 +282,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot4"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -295,7 +293,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot5"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -306,7 +304,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot6"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -317,7 +315,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot7"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -328,7 +326,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot8"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -339,7 +337,7 @@ visible = false
 
 [node name="arms" type="MeshInstance3D" parent="Head/arm_handler/slot9"]
 transform = Transform3D(0.962673, 0.122954, -0.241127, 0.269956, -0.500614, 0.822501, -0.0195822, -0.856894, -0.51512, -0.226454, 2.13123, 0.6)
-layers = 4
+layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_3gtpw")
 skeleton = NodePath("")
@@ -347,6 +345,7 @@ skeleton = NodePath("")
 [node name="stone_axe" type="MeshInstance3D" parent="Head/arm_handler"]
 transform = Transform3D(0.0782751, 0, 1.99847, 0, 2, 0, -1.99847, 0, 0.0782751, -1.29663, 2.36065, 1.22347)
 visible = false
+layers = 2
 mesh = SubResource("ArrayMesh_f0pe0")
 skeleton = NodePath("")
 
@@ -356,8 +355,7 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
 shape = SubResource("CapsuleShape3D_lyxnk")
 
 [node name="ItemArea" type="Area3D" parent="."]
@@ -365,7 +363,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ItemArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
 visible = false
 shape = SubResource("CylinderShape3D_5yc4e")
 

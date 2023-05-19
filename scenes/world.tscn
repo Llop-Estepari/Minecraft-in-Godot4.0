@@ -15,21 +15,13 @@ sky_material = SubResource("ProceduralSkyMaterial_q86g1")
 
 [sub_resource type="Environment" id="Environment_6pfd0"]
 background_mode = 2
-background_color = Color(0.501961, 0.501961, 0.501961, 1)
-background_energy_multiplier = 0.2
 sky = SubResource("Sky_wtukf")
-ambient_light_source = 2
-ambient_light_color = Color(0.815686, 0.815686, 0.815686, 1)
-tonemap_mode = 2
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_fa1gj")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.892019, -0.160047, -0.422713, 0.442355, 0.50125, 0.743687, 0.0928606, -0.850372, 0.517923, 0, 0, 0)
-visible = false
-shadow_enabled = true
-sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6pfd0")
